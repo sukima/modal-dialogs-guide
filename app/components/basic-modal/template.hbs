@@ -1,0 +1,25 @@
+{{#let (hash
+  labeledby=(concat this.guid "-header")
+  describedby=(concat this.guid "-caption")
+) as |ids|}}
+  <div
+    role="dialog"
+    class="modal {{if this.showModal "open"}}"
+    aria-labeledby={{ids.labeledby}}
+    aria-describedby={{ids.describedby}}
+  >
+    <div class="modal-content" aria-model="true" ...attributes>
+      {{#if this.showModal}}
+        {{yield (hash
+          header=(component "basic-modal/section" sectionClass="modal-header" sectionId=ids.labeledby)
+          body=(component "basic-modal/section" sectionClass="modal-body" sectionId=ids.describedby)
+          footer=(component "basic-modal/section" sectionClass="modal-footer")
+          confirm=this.resolver.confirm
+          reject=this.resolver.reject
+          cancel=this.resolver.cancel
+          error=this.resolver.error
+        )}}
+      {{/if}}
+    </div>
+  </div>
+{{/let}}
