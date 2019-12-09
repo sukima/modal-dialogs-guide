@@ -45,7 +45,8 @@
     "eslint-plugin-node": "^10.0.0",
     "hack": "^0.8.1",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.9.0"
+    "qunit-dom": "^0.9.0",
+    "xstate": "^4.7.2"
   },
   "engines": {
     "node": "8.* || >= 10.*"

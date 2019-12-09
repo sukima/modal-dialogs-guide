@@ -1,20 +1,23 @@
 import Component from '@ember/component';
 import Confirmer from 'confirmed';
-import { bool } from '@ember/object/computed';
 import { guidFor } from '@ember/object/internals';
+import { tracked } from '@glimmer/tracking';
 
 export default class BasicModalComponent extends Component {
-
   tagName = '';
 
   guid = guidFor(this);
 
-  @bool('resolver') showModal;
+  @tracked resolver;
+
+  get showModal() {
+    return !!this.resolver;
+  }
 
   openModal() {
     return new Confirmer(resolver => {
-      this.set('resolver', resolver);
-      resolver.dispose(() => this.set('resolver', null));
+      this.resolver = resolver;
+      resolver.dispose(() => this.resolver = null);
     });
   }
 

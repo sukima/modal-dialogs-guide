@@ -1,0 +1,7 @@
+.main-nav .active::after {
+  content: '⇐';
+  font-size: 1.4rem;
+  padding-left: 5px;
+  display: inline-block;
+  text-decoration: none;
+}

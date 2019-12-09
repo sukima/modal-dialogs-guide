@@ -1,0 +1,35 @@
+<h2>Basic Modals</h2>
+
+{{#if this.modalManager}}
+  <button
+    class="btn btn-default"
+    {{on "click" this.modalManager.open}}
+  >
+    Open Modal
+  </button>
+{{/if}}
+
+<BasicModal
+  class="animated pulse"
+  @registerManager={{fn (mut this.modalManager)}}
+  as |modal|
+>
+
+  <modal.header>
+    <h1>Test Modal</h1>
+  </modal.header>
+
+  <modal.body>
+    <p>Sit nisi ipsum dolore accusantium perspiciatis. Nemo distinctio neque minima vero natus! Eaque asperiores aut atque et rem Aspernatur ea sint et natus atque nesciunt Voluptates quasi quos provident suscipit!</p>
+  </modal.body>
+
+  <modal.footer>
+    <button
+      class="btn btn-primary"
+      {{on "click" modal.confirm}}
+    >
+      Close
+    </button>
+  </modal.footer>
+
+</BasicModal>

@@ -7,4 +7,9 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function() {
+  this.route('basic-modals');
+  this.route('wizard-modals', function() {
+    this.route('historical');
+    this.route('persistant');
+  });
 });

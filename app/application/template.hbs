@@ -1,36 +1,20 @@
 <div class="hack container">
+
+  <nav class="main-nav">
+    <ul>
+      <li><LinkTo @route="basic-modals">Basic Modals</LinkTo></li>
+      <li>
+        <LinkTo @route="wizard-modals">Wizard Modals</LinkTo>
+        <ul>
+          <li><LinkTo @route="wizard-modals.historical">Historical</LinkTo></li>
+          <li><LinkTo @route="wizard-modals.persistant">Persistant</LinkTo></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
   <h1>Modal Dialogs Guide</h1>
 
-  <button
-    class="btn btn-default"
-    {{on "click" this.modalManager.open}}
-  >
-    Open Modal
-  </button>
-
   {{outlet}}
-
-  <BasicModal
-    class="animated pulse"
-    @registerManager={{fn (mut this.modalManager)}}
-    as |modal|
-  >
-    <modal.header>
-      <h1>Test Modal</h1>
-    </modal.header>
-
-    <modal.body>
-      <p>Sit nisi ipsum dolore accusantium perspiciatis. Nemo distinctio neque minima vero natus! Eaque asperiores aut atque et rem Aspernatur ea sint et natus atque nesciunt Voluptates quasi quos provident suscipit!</p>
-    </modal.body>
-
-    <modal.footer>
-      <button
-        class="btn btn-primary"
-        {{on "click" modal.confirm}}
-      >
-        Close
-      </button>
-    </modal.footer>
-  </BasicModal>
 
 </div>
