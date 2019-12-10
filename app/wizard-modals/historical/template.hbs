@@ -1,0 +1,15 @@
+<h2>Historical Wizard Modals</h2>
+
+{{#if this.modalManager}}
+  <button
+    class="btn btn-default"
+    {{on "click" this.modalManager.open}}
+  >
+    Open Modal
+  </button>
+{{/if}}
+
+<HistoricalWizard
+  class="animated pulse"
+  @registerManager={{fn (mut this.modalManager)}}
+/>

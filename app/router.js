@@ -10,6 +10,6 @@ Router.map(function() {
   this.route('basic-modals');
   this.route('wizard-modals', function() {
     this.route('historical');
-    this.route('persistant');
+    this.route('persistent');
   });
 });
