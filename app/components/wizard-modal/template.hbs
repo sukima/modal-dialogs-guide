@@ -1,0 +1,44 @@
+{{#let (get this.uiViewInfos this.state) as |uiViewInfo|}}
+
+  <BasicModal
+    ...attributes
+    @registerManager={{fn (mut this.modalManager)}}
+    as |modal|
+  >
+
+    {{#if @title}}
+      <modal.header>
+        <h1>{{@title}}</h1>
+      </modal.header>
+    {{/if}}
+
+    <modal.body>
+      {{yield (hash
+        registerUiViewInfo=(fn (mut (get this.uiViewInfos this.state)))
+        confirm=modal.confirm
+        cancel=modal.cancel
+        state=this.state
+        currentState=this.currentState
+      )}}
+    </modal.body>
+
+    <modal.footer class="grid -stretch">
+      <button
+        class="cell -6of12 btn btn-default btn-ghost"
+        disable={{uiViewInfo.nextDisabled}}
+        {{on "click" (fn this.transitionTo "PREV")}}
+      >
+        {{if uiViewInfo.prevLabel uiViewInfo.prevLabel "Back"}}
+      </button>
+      <button
+        class="cell -6of12 btn btn-primary btn-ghost"
+        disable={{uiViewInfo.nextDisabled}}
+        {{on "click" (fn this.transitionTo "NEXT")}}
+      >
+        {{if uiViewInfo.nextLabel uiViewInfo.nextLabel "Next"}}
+      </button>
+    </modal.footer>
+
+  </BasicModal>
+
+{{/let}}

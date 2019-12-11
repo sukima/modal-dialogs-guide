@@ -1,33 +1,10 @@
-<BasicModal
+<WizardModal
   ...attributes
-  @registerManager={{action (mut this.modalManager)}}
+  @onTransition={{this.pushState}}
+  @registerManager={{this.registerManager}}
   as |modal|
 >
 
-  <modal.header>
-    <h1>Goldilocks and the Three Bears</h1>
-  </modal.header>
+  {{yield modal}}
 
-  <modal.body>
-    {{#unless this.currentState.meta.noBody}}
-      <p>{{this.currentState.value}}</p>
-    {{/unless}}
-  </modal.body>
-
-  <modal.footer>
-    <button
-      class="btn btn-default"
-      {{on "click" (fn this.transitionTo "PREV")}}
-    >
-      Back
-    </button>
-    <button
-      class="btn btn-primary"
-      disabled={{this.uiViewInfo.nextDisabled}}
-      {{on "click" (fn this.transitionTo "NEXT")}}
-    >
-      Next
-    </button>
-  </modal.footer>
-
-</BasicModal>
+</WizardModal>

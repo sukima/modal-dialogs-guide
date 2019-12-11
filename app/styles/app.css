@@ -1,2 +1,6 @@
 @import 'nav.css';
 @import 'modal.css';
+
+.text-center {
+  text-align: center;
+}

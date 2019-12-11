@@ -4,6 +4,7 @@ import { guidFor } from '@ember/object/internals';
 import { tracked } from '@glimmer/tracking';
 
 export default class BasicModalComponent extends Component {
+
   tagName = '';
 
   guid = guidFor(this);

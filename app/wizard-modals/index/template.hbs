@@ -1,0 +1,15 @@
+<h2>Wizard Modals</h2>
+
+{{#if this.modalManager}}
+  <button
+    class="btn btn-primary"
+    {{on "click" this.modalManager.open}}
+  >
+    Read "Goldilocks and the Three Bears"
+  </button>
+{{/if}}
+
+<GoldilocksStoryModal
+  class="animated flipInY"
+  @registerManager={{fn (mut this.modalManager)}}
+/>

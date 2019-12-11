@@ -1,0 +1,20 @@
+<WizardModal
+  ...attributes
+  @stateDefinition={{hash definition=this.definition guards=this.guards}}
+  @registerManager={{@registerManager}}
+  @onTransition={{@onTransition}}
+  @title={{this.title}}
+  as |wizard|
+>
+
+  {{#let
+    (component (concat "goldilocks-story-modal/" wizard.state))
+    as |WizardView|
+  }}
+    <WizardView
+      @storyState={{this.storyState}}
+      @registerUiViewInfo={{wizard.registerUiViewInfo}}
+    />
+  {{/let}}
+
+</WizardModal>
