@@ -1,3 +1,61 @@
 <div ...attributes>
-  Kitchen
+
+  <p>
+    You walk into the cabin and see a lovely kitchen. On the table there are
+    three bowls of porridge.
+  </p>
+
+  <p>
+    Which bowl would you like to try?
+  </p>
+
+  <fieldset>
+
+    <p>
+      {{#let (concat "porridge-" this.OPTIONS.TOO_HOT) as |id|}}
+        <input
+          type="radio"
+          name="porridge"
+          id={{id}}
+          checked={{@storyState.isPorridgeTooHot}}
+          {{on "change" (fn (mut @storyState.porridge) this.OPTIONS.TOO_HOT)}}
+        >
+        <label for={{id}}>
+          The red bowl with steam rising from it
+        </label>
+      {{/let}}
+    </p>
+
+    <p>
+      {{#let (concat "porridge-" this.OPTIONS.JUST_RIGHT) as |id|}}
+        <input
+          type="radio"
+          name="porridge"
+          id={{id}}
+          checked={{@storyState.isPorridgeJustRight}}
+          {{on "change" (fn (mut @storyState.porridge) this.OPTIONS.JUST_RIGHT)}}
+        >
+        <label for={{id}}>
+          The yellow bowl with a spoon left in it
+        </label>
+      {{/let}}
+    </p>
+
+    <p>
+      {{#let (concat "porridge-" this.OPTIONS.TOO_COLD) as |id|}}
+        <input
+          type="radio"
+          name="porridge"
+          id={{id}}
+          checked={{@storyState.isPorridgeTooCold}}
+          {{on "change" (fn (mut @storyState.porridge) this.OPTIONS.TOO_COLD)}}
+        >
+        <label for={{id}}>
+          The green bowl with crackers in the porridge
+        </label>
+      {{/let}}
+    </p>
+
+  </fieldset>
+
 </div>

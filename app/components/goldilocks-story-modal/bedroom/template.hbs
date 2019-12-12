@@ -1,0 +1,66 @@
+<div ...attributes>
+
+  <p>
+    Now that is a comfy chair. But relaxing has made you tired.
+  </p>
+
+  <p>
+    You head upstairs to discover three bedrooms. Each with a inviting bed to
+    help you slumber.
+  </p>
+
+  <p>
+    Which bed would you like to sleep in?
+  </p>
+
+  <fieldset>
+
+    <p>
+      {{#let (concat "chair-" this.OPTIONS.JUST_RIGHT) as |id|}}
+        <input
+          type="radio"
+          name="bed"
+          id={{id}}
+          checked={{@storyState.isBedJustRight}}
+          {{on "change" (fn (mut @storyState.bed) this.OPTIONS.JUST_RIGHT)}}
+        >
+        <label for={{id}}>
+          The queen sized bed with a black and white checker pattern on the
+          comforter
+        </label>
+      {{/let}}
+    </p>
+
+    <p>
+      {{#let (concat "bed-" this.OPTIONS.TOO_SOFT) as |id|}}
+        <input
+          type="radio"
+          name="bed"
+          id={{id}}
+          checked={{@storyState.isBedTooSoft}}
+          {{on "change" (fn (mut @storyState.bed) this.OPTIONS.TOO_SOFT)}}
+        >
+        <label for={{id}}>
+          The twin sized bed with a green afghan folded at the foot
+        </label>
+      {{/let}}
+    </p>
+
+    <p>
+      {{#let (concat "bed-" this.OPTIONS.TOO_HARD) as |id|}}
+        <input
+          type="radio"
+          name="bed"
+          id={{id}}
+          checked={{@storyState.isBedTooHard}}
+          {{on "change" (fn (mut @storyState.bed) this.OPTIONS.TOO_HARD)}}
+        >
+        <label for={{id}}>
+          The king sized bed with a fluffy teddy bear on it
+        </label>
+      {{/let}}
+    </p>
+
+  </fieldset>
+
+</div>

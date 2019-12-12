@@ -1,0 +1,65 @@
+<div ...attributes>
+
+  <p>
+    Ahhh yum. That porridge was <em>just right</em>.
+  </p>
+
+  <p>
+    Continuing on, you walk into the living room and notice three upholstered
+    chairs.
+  </p>
+
+  <p>
+    Which chair would you like to sit in?
+  </p>
+
+  <fieldset>
+
+    <p>
+      {{#let (concat "chair-" this.OPTIONS.TOO_HOT) as |id|}}
+        <input
+          type="radio"
+          name="chair"
+          id={{id}}
+          checked={{@storyState.isChairTooBig}}
+          {{on "change" (fn (mut @storyState.chair) this.OPTIONS.TOO_BIG)}}
+        >
+        <label for={{id}}>
+          The black recliner with leather and a great deal of padding
+        </label>
+      {{/let}}
+    </p>
+
+    <p>
+      {{#let (concat "chair-" this.OPTIONS.TOO_SMALL) as |id|}}
+        <input
+          type="radio"
+          name="chair"
+          id={{id}}
+          checked={{@storyState.isChairTooSmall}}
+          {{on "change" (fn (mut @storyState.chair) this.OPTIONS.TOO_SMALL)}}
+        >
+        <label for={{id}}>
+          The wooden rocking chair with a floral upholstered seat cover
+        </label>
+      {{/let}}
+    </p>
+
+    <p>
+      {{#let (concat "chair-" this.OPTIONS.JUST_RIGHT) as |id|}}
+        <input
+          type="radio"
+          name="chair"
+          id={{id}}
+          checked={{@storyState.isChairJustRight}}
+          {{on "change" (fn (mut @storyState.chair) this.OPTIONS.JUST_RIGHT)}}
+        >
+        <label for={{id}}>
+          The ergonomic desk chair with adjustable arms and back support
+        </label>
+      {{/let}}
+    </p>
+
+  </fieldset>
+
+</div>

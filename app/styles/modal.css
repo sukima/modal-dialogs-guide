@@ -36,7 +36,11 @@
   width: 100%;
 }
 
-.modal .modal-content .modal-footer {
+.modal .modal-body {
+  overflow-y: auto;
+}
+
+.modal .modal-footer {
   text-align: right;
 }
 

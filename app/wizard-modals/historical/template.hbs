@@ -1,15 +1,32 @@
 <h2>Historical Wizard Modals</h2>
 
-{{#if this.modalManager}}
-  <button
-    class="btn btn-default"
-    {{on "click" this.modalManager.open}}
-  >
-    Open Modal
-  </button>
-{{/if}}
+<StateMachineHistory as |history|>
 
-<HistoricalWizard
-  class="animated pulse"
-  @registerManager={{fn (mut this.modalManager)}}
-/>
+  <button
+    class="btn btn-primary"
+    {{on "click" (fn this.openModal history.reset)}}
+  >
+    Read "Goldilocks and the Three Bears"
+  </button>
+
+  <div class="history-report">
+    {{#if history.stack}}
+      <ol>
+        {{#each history.stack as |state|}}
+          <li>{{state.value}}</li>
+        {{/each}}
+      </ol>
+    {{else}}
+      Nothing to report yet. Open the modal first.
+    {{/if}}
+  </div>
+
+  <GoldilocksStoryModal
+    class="animated flipInY"
+    @subtitle="Historical"
+    @currentState={{history.lastState}}
+    @onTransition={{fn history.pushState}}
+    @registerManager={{fn (mut this.modalManager)}}
+  />
+
+</StateMachineHistory>

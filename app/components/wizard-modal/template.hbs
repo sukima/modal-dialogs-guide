@@ -18,21 +18,20 @@
         confirm=modal.confirm
         cancel=modal.cancel
         state=this.state
-        currentState=this.currentState
       )}}
     </modal.body>
 
     <modal.footer class="grid -stretch">
       <button
         class="cell -6of12 btn btn-default btn-ghost"
-        disable={{uiViewInfo.nextDisabled}}
+        disabled={{uiViewInfo.prevDisabled}}
         {{on "click" (fn this.transitionTo "PREV")}}
       >
         {{if uiViewInfo.prevLabel uiViewInfo.prevLabel "Back"}}
       </button>
       <button
         class="cell -6of12 btn btn-primary btn-ghost"
-        disable={{uiViewInfo.nextDisabled}}
+        disabled={{uiViewInfo.nextDisabled}}
         {{on "click" (fn this.transitionTo "NEXT")}}
       >
         {{if uiViewInfo.nextLabel uiViewInfo.nextLabel "Next"}}

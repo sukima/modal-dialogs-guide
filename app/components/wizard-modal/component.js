@@ -38,8 +38,7 @@ export default class WizardModalComponent extends Component {
   }
 
   openModal() {
-    this.currentState = this.machine.initialState;
-    this.notifyTransition();
+    this.updateState(this.currentState || this.machine.initialState);
     return this.modalManager.open();
   }
 
@@ -51,9 +50,11 @@ export default class WizardModalComponent extends Component {
     this.modalManager.cancel();
   }
 
-  notifyTransition() {
+  updateState(state) {
     if (this.onTransition) {
-      this.onTransition(this.currentState);
+      this.onTransition(state);
+    } else {
+      this.currentState = state;
     }
   }
 
@@ -61,8 +62,7 @@ export default class WizardModalComponent extends Component {
     let newState = this.machine.transition(this.currentState, event);
     const { actions } = newState;
     actions.forEach(action => action.exec && action.exec());
-    this.currentState = newState;
-    this.notifyTransition();
+    this.updateState(newState);
   }
 
 }
