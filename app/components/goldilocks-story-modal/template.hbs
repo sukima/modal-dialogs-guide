@@ -3,19 +3,22 @@
   @stateDefinition={{hash definition=this.definition guards=this.guards}}
   @registerManager={{@registerManager}}
   @onTransition={{@onTransition}}
+  @history={{@history}}
   @currentState={{@currentState}}
   @title={{this.title}}
   as |wizard|
 >
 
-  {{#let
-    (component (concat "goldilocks-story-modal/" wizard.state))
-    as |WizardView|
-  }}
-    <WizardView
-      @storyState={{this.storyState}}
-      @registerUiViewInfo={{wizard.registerUiViewInfo}}
-    />
-  {{/let}}
+  {{#unless wizard.isDone}}
+    {{#let
+      (component (concat "goldilocks-story-modal/" wizard.state))
+      as |WizardView|
+    }}
+      <WizardView
+        @storyState={{this.storyState}}
+        @registerUiViewInfo={{wizard.registerUiViewInfo}}
+      />
+    {{/let}}
+  {{/unless}}
 
 </WizardModal>
