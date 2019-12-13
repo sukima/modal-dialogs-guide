@@ -12,7 +12,7 @@ export default class WizardModalComponent extends Component {
   @tracked currentState;
 
   get state() {
-    return this.currentState.value;
+    return this.currentState && this.currentState.value;
   }
 
   init() {
@@ -31,14 +31,15 @@ export default class WizardModalComponent extends Component {
   didInsertElement() {
     super.didInsertElement(...arguments);
     this.registerManager({
-      open: () => this.openModal(),
+      open: (currentState) => this.openModal(currentState),
       confirm: () => this.confirmModal(),
       cancel: () => this.cancelModal(),
     });
   }
 
-  openModal() {
-    this.updateState(this.currentState || this.machine.initialState);
+  openModal(initialState = this.machine.initialState) {
+    let currentState = this.machine.resolveState(initialState);
+    this.updateState(currentState);
     return this.modalManager.open();
   }
 
@@ -59,7 +60,8 @@ export default class WizardModalComponent extends Component {
   }
 
   @action transitionTo(event) {
-    let newState = this.machine.transition(this.currentState, event);
+    let currentState = this.machine.resolveState(this.currentState);
+    let newState = this.machine.transition(currentState, event);
     const { actions } = newState;
     actions.forEach(action => action.exec && action.exec());
     this.updateState(newState);

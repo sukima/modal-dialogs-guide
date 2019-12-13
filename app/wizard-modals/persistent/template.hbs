@@ -1,0 +1,27 @@
+<h2>Persistent Wizard Modals</h2>
+
+{{#if this.modalManager}}
+  <button
+    class="btn btn-primary"
+    {{on "click" this.openModal}}
+  >
+    Read "Goldilocks and the Three Bears"
+  </button>
+{{/if}}
+
+{{#if this.state}}
+  <button
+    class="btn btn-error"
+    {{on "click" (fn (mut this.state) undefined)}}
+  >
+    Reset progress
+  </button>
+{{/if}}
+
+<GoldilocksStoryModal
+  class="animated flipInY"
+  @subtitle="Persistent"
+  @currentState={{this.state}}
+  @onTransition={{fn (mut this.state)}}
+  @registerManager={{fn (mut this.modalManager)}}
+/>

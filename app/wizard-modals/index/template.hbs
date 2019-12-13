@@ -3,7 +3,7 @@
 {{#if this.modalManager}}
   <button
     class="btn btn-primary"
-    {{on "click" this.modalManager.open}}
+    {{on "click" (fn this.modalManager.open null)}}
   >
     Read "Goldilocks and the Three Bears"
   </button>
