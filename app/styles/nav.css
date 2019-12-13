@@ -1,7 +1,58 @@
-.main-nav .active::after {
-  content: '⇐';
-  font-size: 1.4rem;
-  padding-left: 5px;
-  display: inline-block;
-  text-decoration: none;
+.main-nav {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.main-nav .main-nav__root::after {
+  content: ' =>';
+}
+
+.main-nav ul {
+  display: inline;
+  list-style: none;
+}
+
+.main-nav ul::before {
+  content: '{';
+}
+
+.main-nav ul::after {
+  content: '}';
+}
+
+.main-nav ul {
+  display: inline;
+  list-style: none;
+}
+
+.main-nav li {
+  display: inline;
+}
+
+.hack .main-nav li {
+  padding-left: 0;
+}
+
+.hack .main-nav ul > li::after {
+  content: none;
+}
+
+.hack .main-nav ul > li::before {
+  content: '| ';
+}
+
+.hack .main-nav ul > li:first-child::before {
+  content: none;
+}
+
+.main-nav li > .active {
+  font-weight: bold;
+}
+
+.main-nav li > .active::before {
+  content: '[';
+}
+
+.main-nav li > .active::after {
+  content: ']';
 }
