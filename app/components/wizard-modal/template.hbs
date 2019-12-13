@@ -8,17 +8,23 @@
 
     {{#if @title}}
       <modal.header>
+        <button
+          class="btn btn-default btn-ghost btn-icon pull-right"
+          aria-label="Close"
+          {{on "click" modal.cancel}}
+        >&times;</button>
         <h1>{{@title}}</h1>
       </modal.header>
     {{/if}}
 
     <modal.body>
       {{yield (hash
+        transitionTo=(fn this.transitionTo)
         registerUiViewInfo=(fn (mut (get this.uiViewInfos this.state)))
         confirm=modal.confirm
         cancel=modal.cancel
         state=this.state
-        isDone=this.currentState.done
+        currentState=@currentState
       )}}
     </modal.body>
 

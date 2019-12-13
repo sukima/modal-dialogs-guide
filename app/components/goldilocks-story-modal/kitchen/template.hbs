@@ -12,13 +12,13 @@
   <fieldset>
 
     <p>
-      {{#let (concat "porridge-" this.OPTIONS.TOO_HOT) as |id|}}
+      {{#let (concat "kitchen-" this.OPTIONS.TOO_HOT) as |id|}}
         <input
           type="radio"
           name="porridge"
           id={{id}}
-          checked={{@storyState.isPorridgeTooHot}}
-          {{on "change" (fn (mut @storyState.porridge) this.OPTIONS.TOO_HOT)}}
+          checked={{this.isPorridgeTooHot}}
+          {{on "change" (fn @transitionTo (hash type="EAT" value=this.OPTIONS.TOO_HOT))}}
         >
         <label for={{id}}>
           The red bowl with steam rising from it
@@ -27,13 +27,13 @@
     </p>
 
     <p>
-      {{#let (concat "porridge-" this.OPTIONS.JUST_RIGHT) as |id|}}
+      {{#let (concat "kitchen-" this.OPTIONS.JUST_RIGHT) as |id|}}
         <input
           type="radio"
           name="porridge"
           id={{id}}
-          checked={{@storyState.isPorridgeJustRight}}
-          {{on "change" (fn (mut @storyState.porridge) this.OPTIONS.JUST_RIGHT)}}
+          checked={{this.isPorridgeJustRight}}
+          {{on "change" (fn @transitionTo (hash type="EAT" value=this.OPTIONS.JUST_RIGHT))}}
         >
         <label for={{id}}>
           The yellow bowl with a spoon left in it
@@ -42,13 +42,13 @@
     </p>
 
     <p>
-      {{#let (concat "porridge-" this.OPTIONS.TOO_COLD) as |id|}}
+      {{#let (concat "kitchen-" this.OPTIONS.TOO_COLD) as |id|}}
         <input
           type="radio"
           name="porridge"
           id={{id}}
-          checked={{@storyState.isPorridgeTooCold}}
-          {{on "change" (fn (mut @storyState.porridge) this.OPTIONS.TOO_COLD)}}
+          checked={{this.isPorridgeTooCold}}
+          {{on "change" (fn @transitionTo (hash type="EAT" value=this.OPTIONS.TOO_COLD))}}
         >
         <label for={{id}}>
           The green bowl with crackers in the porridge

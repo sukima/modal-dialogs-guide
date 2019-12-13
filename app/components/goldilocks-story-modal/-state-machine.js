@@ -1,13 +1,34 @@
-import { Machine } from 'xstate';
+import { Machine, assign } from 'xstate';
+
+export const PORRIDGE = Object.freeze({
+  UNSELECTED: 'unselected',
+  TOO_HOT: 'too-hot',
+  TOO_COLD: 'too-cold',
+  JUST_RIGHT: 'just-right',
+});
+
+export const CHAIR = Object.freeze({
+  UNSELECTED: 'unselected',
+  TOO_BIG: 'too-big',
+  TOO_SMALL: 'too-small',
+  JUST_RIGHT: 'just-right',
+});
+
+export const BED = Object.freeze({
+  UNSELECTED: 'unselected',
+  TOO_HARD: 'too-hard',
+  TOO_SOFT: 'too-soft',
+  JUST_RIGHT: 'just-right',
+});
 
 export function createGoldilocksMachine() {
   return Machine({
     id: 'goldilocks',
     initial: 'cover',
     context: {
-      porridge: '',
-      chair: '',
-      bed: '',
+      porridge: PORRIDGE.UNSELECTED,
+      chair: CHAIR.UNSELECTED,
+      bed: BED.UNSELECTED,
     },
     states: {
       cancelled: {
@@ -40,6 +61,7 @@ export function createGoldilocksMachine() {
             { target: 'porridge-too-cold', cond: 'isPorridgeTooCold' },
             { target: 'living-room', cond: 'isPorridgeJustRight' },
           ],
+          EAT: { target: 'kitchen', actions: ['eatPorridge'] },
         },
       },
       'porridge-too-hot': {
@@ -62,6 +84,7 @@ export function createGoldilocksMachine() {
             { target: 'chair-too-small', cond: 'isChairTooSmall' },
             { target: 'bedroom', cond: 'isChairJustRight' },
           ],
+          SIT: { target: 'living-room', actions: ['sitInChair'] },
         },
       },
       'chair-too-big': {
@@ -84,6 +107,7 @@ export function createGoldilocksMachine() {
             { target: 'bed-too-soft', cond: 'isBedTooSoft' },
             { target: 'wake-up', cond: 'isBedJustRight' },
           ],
+          SLEEP: { target: 'bedroom', actions: ['sleepInBed'] },
         },
       },
       'bed-too-hard': {
@@ -114,7 +138,21 @@ export function createGoldilocksMachine() {
     },
   },
   {
-    actions: {},
-    guards: {},
+    actions: {
+      eatPorridge: assign((_, { value }) => ({ porridge: value })),
+      sitInChair: assign((_, { value }) => ({ chair: value })),
+      sleepInBed: assign((_, { value }) => ({ bed: value })),
+    },
+    guards: {
+      isPorridgeTooHot: (ctx) => ctx.porridge === PORRIDGE.TOO_HOT,
+      isPorridgeTooCold: (ctx) => ctx.porridge === PORRIDGE.TOO_COLD,
+      isPorridgeJustRight: (ctx) => ctx.porridge === PORRIDGE.JUST_RIGHT,
+      isChairTooBig: (ctx) => ctx.chair === CHAIR.TOO_BIG,
+      isChairTooSmall: (ctx) => ctx.chair === CHAIR.TOO_SMALL,
+      isChairJustRight: (ctx) => ctx.chair === CHAIR.JUST_RIGHT,
+      isBedTooHard: (ctx) => ctx.bed === BED.TOO_HARD,
+      isBedTooSoft: (ctx) => ctx.bed === BED.TOO_SOFT,
+      isBedJustRight: (ctx) => ctx.bed === BED.JUST_RIGHT,
+    },
   });
 }

@@ -1,16 +1,11 @@
 import Component from '@ember/component';
-import StoryState from './-story-state';
-import { GOLDILOCKS_STATECHART } from './-statechart';
+import { createGoldilocksMachine } from './-state-machine';
 
 export default class GoldilockaStoryModalComponent extends Component {
 
   tagName = '';
 
-  storyState = new StoryState();
-
-  guards = this.storyState.buildGuards();
-
-  definition = GOLDILOCKS_STATECHART;
+  machine = createGoldilocksMachine();
 
   get title() {
     let mainTitle = 'Goldilocks and the Three Bears';

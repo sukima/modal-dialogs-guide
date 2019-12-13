@@ -9,11 +9,17 @@
     Read "Goldilocks and the Three Bears"
   </button>
 
-  <div class="history-report">
+  <div>
     {{#if history.stack}}
-      <ol>
+      <ol class="history-report">
         {{#each history.stack as |state|}}
-          <li>{{state.value}}</li>
+          <li class="item">
+            <span>
+              {{#if state.history}}{{state.history.value}} ⇒{{/if}}
+              {{state.value}}
+            </span>
+            <span><code>{{json state.context indent=0}}</code></span>
+          </li>
         {{/each}}
       </ol>
     {{else}}

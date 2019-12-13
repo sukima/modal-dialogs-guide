@@ -1,6 +1,5 @@
 import Component from '@ember/component';
-import { isNone } from '@ember/utils';
-import { PORRIDGE as PORRIDGE_OPTIONS } from '../-story-state';
+import { PORRIDGE as PORRIDGE_OPTIONS } from '../-state-machine';
 
 export default class StoryKitchenComponent extends Component {
 
@@ -8,12 +7,28 @@ export default class StoryKitchenComponent extends Component {
 
   OPTIONS = PORRIDGE_OPTIONS;
 
+  get isPorridgeTooHot() {
+    return this.currentState.context.porridge === PORRIDGE_OPTIONS.TOO_HOT;
+  }
+
+  get isPorridgeTooCold() {
+    return this.currentState.context.porridge === PORRIDGE_OPTIONS.TOO_COLD;
+  }
+
+  get isPorridgeJustRight() {
+    return this.currentState.context.porridge === PORRIDGE_OPTIONS.JUST_RIGHT;
+  }
+
+  get isPorridgeUnselected() {
+    return this.currentState.context.porridge === PORRIDGE_OPTIONS.UNSELECTED;
+  }
+
   didInsertElement() {
     super.didInsertElement(...arguments);
-    let { storyState } = this;
+    let component = this;
     this.registerUiViewInfo({
       nextLabel: 'Drink Porridge',
-      get nextDisabled() { return isNone(storyState.porridge); },
+      get nextDisabled() { return component.isPorridgeUnselected; },
     });
   }
 

@@ -1,6 +1,5 @@
 import Component from '@ember/component';
-import { isNone } from '@ember/utils';
-import { CHAIR as CHAIR_OPTIONS } from '../-story-state';
+import { CHAIR as CHAIR_OPTIONS } from '../-state-machine';
 
 export default class StoryLivingRoomComponent extends Component {
 
@@ -8,12 +7,28 @@ export default class StoryLivingRoomComponent extends Component {
 
   OPTIONS = CHAIR_OPTIONS;
 
+  get isChairTooBig() {
+    return this.currentState.context.chair === CHAIR_OPTIONS.TOO_BIG;
+  }
+
+  get isChairTooSmall() {
+    return this.currentState.context.chair === CHAIR_OPTIONS.TOO_SMALL;
+  }
+
+  get isChairJustRight() {
+    return this.currentState.context.chair === CHAIR_OPTIONS.JUST_RIGHT;
+  }
+
+  get isChairUnselected() {
+    return this.currentState.context.chair === CHAIR_OPTIONS.UNSELECTED;
+  }
+
   didInsertElement() {
     super.didInsertElement(...arguments);
-    let { storyState } = this;
+    let component = this;
     this.registerUiViewInfo({
       nextLabel: 'Sit in chair',
-      get nextDisabled() { return isNone(storyState.chair); },
+      get nextDisabled() { return component.isChairUnselected; },
     });
   }
 

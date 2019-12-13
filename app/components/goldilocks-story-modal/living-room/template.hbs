@@ -16,13 +16,13 @@
   <fieldset>
 
     <p>
-      {{#let (concat "chair-" this.OPTIONS.TOO_HOT) as |id|}}
+      {{#let (concat "living-room-" this.OPTIONS.TOO_HOT) as |id|}}
         <input
           type="radio"
           name="chair"
           id={{id}}
-          checked={{@storyState.isChairTooBig}}
-          {{on "change" (fn (mut @storyState.chair) this.OPTIONS.TOO_BIG)}}
+          checked={{this.isChairTooBig}}
+          {{on "change" (fn @transitionTo (hash type="SIT" value=this.OPTIONS.TOO_BIG))}}
         >
         <label for={{id}}>
           The black recliner with leather and a great deal of padding
@@ -31,13 +31,13 @@
     </p>
 
     <p>
-      {{#let (concat "chair-" this.OPTIONS.TOO_SMALL) as |id|}}
+      {{#let (concat "living-room-" this.OPTIONS.TOO_SMALL) as |id|}}
         <input
           type="radio"
           name="chair"
           id={{id}}
-          checked={{@storyState.isChairTooSmall}}
-          {{on "change" (fn (mut @storyState.chair) this.OPTIONS.TOO_SMALL)}}
+          checked={{this.isChairTooSmall}}
+          {{on "change" (fn @transitionTo (hash type="SIT" value=this.OPTIONS.TOO_SMALL))}}
         >
         <label for={{id}}>
           The wooden rocking chair with a floral upholstered seat cover
@@ -46,13 +46,13 @@
     </p>
 
     <p>
-      {{#let (concat "chair-" this.OPTIONS.JUST_RIGHT) as |id|}}
+      {{#let (concat "living-room-" this.OPTIONS.JUST_RIGHT) as |id|}}
         <input
           type="radio"
           name="chair"
           id={{id}}
-          checked={{@storyState.isChairJustRight}}
-          {{on "change" (fn (mut @storyState.chair) this.OPTIONS.JUST_RIGHT)}}
+          checked={{this.isChairJustRight}}
+          {{on "change" (fn @transitionTo (hash type="SIT" value=this.OPTIONS.JUST_RIGHT))}}
         >
         <label for={{id}}>
           The ergonomic desk chair with adjustable arms and back support

@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { Machine } from 'xstate';
 
 export default class WizardModalComponent extends Component {
 
@@ -15,21 +14,14 @@ export default class WizardModalComponent extends Component {
     return this.currentState && this.currentState.value;
   }
 
-  init() {
-    super.init(...arguments);
-    let { definition, actions = {}, guards = {} } = this.stateDefinition;
-    this.machine = new Machine(definition, {
-      guards,
+  didInsertElement() {
+    super.didInsertElement(...arguments);
+    this.currentMachine = this.machine.withConfig({
       actions: {
         confirm: () => this.confirmModal(),
         cancel: () => this.cancelModal(),
-        ...actions,
       },
     });
-  }
-
-  didInsertElement() {
-    super.didInsertElement(...arguments);
     this.registerManager({
       open: (currentState) => this.openModal(currentState),
       confirm: () => this.confirmModal(),
@@ -37,9 +29,9 @@ export default class WizardModalComponent extends Component {
     });
   }
 
-  openModal(initialState = this.machine.initialState) {
-    let currentState = this.machine.resolveState(initialState);
-    this.updateState(currentState);
+  openModal(initialState = this.currentMachine.initialState) {
+    let currentState = this.currentMachine.resolveState(initialState);
+    this.onTransition(currentState);
     return this.modalManager.open();
   }
 
@@ -51,20 +43,12 @@ export default class WizardModalComponent extends Component {
     this.modalManager.cancel();
   }
 
-  updateState(state) {
-    if (this.onTransition) {
-      this.onTransition(state);
-    } else {
-      this.currentState = state;
-    }
-  }
-
   @action transitionTo(event) {
-    let currentState = this.machine.resolveState(this.currentState);
-    let newState = this.machine.transition(currentState, event);
+    let currentState = this.currentMachine.resolveState(this.currentState);
+    let newState = this.currentMachine.transition(currentState, event);
     const { actions } = newState;
     actions.forEach(action => action.exec && action.exec());
-    this.updateState(newState);
+    this.onTransition(newState);
   }
 
 }
