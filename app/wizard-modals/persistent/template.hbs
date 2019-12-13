@@ -2,10 +2,11 @@
 
 {{#if this.modalManager}}
   <button
-    class="btn btn-primary"
+    class="btn {{if this.state "btn-success" "btn-primary"}}"
     {{on "click" this.openModal}}
   >
-    Read "Goldilocks and the Three Bears"
+    {{if this.state "Resume reading" "Read"}}
+    &rdquo;Goldilocks and the Three Bears&ldquo;
   </button>
 {{/if}}
 

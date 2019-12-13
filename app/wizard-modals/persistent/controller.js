@@ -8,12 +8,11 @@ export default class WizardModalsPersistentController extends Controller {
 
   @tracked state = undefined;
 
-  @action openModal() {
-    this.modalManager.open(this.state).onDone(() => {
-      if (this.state.done) {
-        this.state = undefined;
-      }
-    });
+  @action async openModal() {
+    await this.modalManager.open(this.state);
+    if (this.state.done) {
+      this.state = undefined;
+    }
   }
 
 }

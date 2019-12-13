@@ -19,13 +19,14 @@ export default class WizardModalComponent extends Component {
     this.currentMachine = this.machine.withConfig({
       actions: {
         confirm: () => this.confirmModal(),
-        cancel: () => this.cancelModal(),
+        cancel: () => this.rejectModal(),
       },
     });
     this.registerManager({
       open: (currentState) => this.openModal(currentState),
       confirm: () => this.confirmModal(),
       cancel: () => this.cancelModal(),
+      reject: () => this.rejectModal(),
     });
   }
 
@@ -41,6 +42,10 @@ export default class WizardModalComponent extends Component {
 
   cancelModal() {
     this.modalManager.cancel();
+  }
+
+  rejectModal() {
+    this.modalManager.reject();
   }
 
   @action transitionTo(event) {

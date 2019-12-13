@@ -1,38 +1,69 @@
 <h2>Historical Wizard Modals</h2>
 
-<StateMachineHistory as |history|>
+<ModalResultTracker as |modalTracker|>
 
-  <button
-    class="btn btn-primary"
-    {{on "click" (fn this.openModal history.reset)}}
-  >
-    Read "Goldilocks and the Three Bears"
-  </button>
+  <StateMachineHistory as |history|>
 
-  <div>
-    {{#if history.stack}}
-      <ol class="history-report">
+    <button
+      class="btn btn-primary"
+      {{on "click" (fn this.chainActions (array history.reset modalTracker.openModal))}}
+    >
+      Read &rdquo;Goldilocks and the Three Bears&ldquo;
+    </button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>States</th>
+          <th>Context</th>
+        </tr>
+      </thead>
+      <tbody>
         {{#each history.stack as |state|}}
-          <li class="item">
-            <span>
+          <tr>
+            <td>
+              {{state.event.type}}
+            </td>
+            <td>
               {{#if state.history}}{{state.history.value}} ⇒{{/if}}
               {{state.value}}
-            </span>
-            <span><code>{{json state.context indent=0}}</code></span>
-          </li>
+            </td>
+            <td>
+              <code>{{json state.context indent=0}}</code>
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan="3" align="center">
+              Nothing to report yet. Open the modal first.
+            </td>
+          </tr>
         {{/each}}
-      </ol>
-    {{else}}
-      Nothing to report yet. Open the modal first.
-    {{/if}}
-  </div>
+        {{#if modalTracker.result}}
+          <tr>
+            <td>
+              <em>Closed</em>
+            </td>
+            <td>
+              {{modalTracker.result.reason}}
+            </td>
+            <td>
+              This is the result of the Confirmer.
+            </td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
 
-  <GoldilocksStoryModal
-    class="animated flipInY"
-    @subtitle="Historical"
-    @currentState={{history.lastState}}
-    @onTransition={{fn history.pushState}}
-    @registerManager={{fn (mut this.modalManager)}}
-  />
+    <GoldilocksStoryModal
+      class="animated flipInY"
+      @subtitle="Historical"
+      @currentState={{history.lastState}}
+      @onTransition={{fn history.pushState}}
+      @registerManager={{modalTracker.registerManager}}
+    />
 
-</StateMachineHistory>
+  </StateMachineHistory>
+
+</ModalResultTracker>

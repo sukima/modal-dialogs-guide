@@ -21,8 +21,7 @@
       {{yield (hash
         transitionTo=(fn this.transitionTo)
         registerUiViewInfo=(fn (mut (get this.uiViewInfos this.state)))
-        confirm=modal.confirm
-        cancel=modal.cancel
+        modal=modal
         state=this.state
         currentState=@currentState
       )}}
