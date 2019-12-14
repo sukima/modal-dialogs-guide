@@ -1,4 +1,5 @@
 import Route from '@ember/routing/route';
+import LZString from 'lz-string';
 import { State } from 'xstate';
 
 export default class WizardModalsPersistentRoute extends Route {
@@ -8,17 +9,19 @@ export default class WizardModalsPersistentRoute extends Route {
   };
 
   serializeQueryParam(value, _, defaultType) {
-    switch (defaultType) {
-      case 'xstate': return JSON.stringify(value);
-      default: return super.serializeQueryParam(...arguments);
+    if (defaultType === 'xstate') {
+      return LZString.compressToEncodedURIComponent(JSON.stringify(value));
     }
+    return super.serializeQueryParam(...arguments);
   }
 
   deserializeQueryParam(value, _, defaultType) {
-    switch (defaultType) {
-      case 'xstate': return State.create(JSON.parse(value));
-      default: return super.deserializeQueryParam(...arguments);
+    if (defaultType === 'xstate') {
+      return State.create(
+        JSON.parse(LZString.decompressFromEncodedURIComponent(value))
+      );
     }
+    return super.deserializeQueryParam(...arguments);
   }
 
 }
