@@ -30,13 +30,16 @@ export default class BasicModalComponent extends Component {
       reject: (value) => this.resolver.reject(value),
       cancel: (value) => this.resolver.cancel(value),
       error: (error) => this.resolver.error(error),
-    });
+    }, this.name);
   }
 
   willDestroyElement() {
     super.willDestroyElement(...arguments);
     if (this.resolver) {
       this.resolver.cancel();
+    }
+    if (this.unregisterManager) {
+      this.unregisterManager(this.name);
     }
   }
 

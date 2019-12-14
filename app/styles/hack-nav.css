@@ -10,6 +10,8 @@
 }
 
 .hack-nav .hack-nav__menu {
+  flex-grow: 1;
+  text-align: center;
   margin-top: 10px;
 }
 

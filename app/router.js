@@ -12,4 +12,5 @@ Router.map(function() {
     this.route('historical');
     this.route('persistent');
   });
+  this.route('extras');
 });

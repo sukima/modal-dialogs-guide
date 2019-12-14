@@ -2,6 +2,10 @@
 @import 'hack-nav.css';
 @import 'theme-picker.css';
 
+.hack.default {
+  background-color: #f5f5f5;
+}
+
 .text-center {
   text-align: center;
 }

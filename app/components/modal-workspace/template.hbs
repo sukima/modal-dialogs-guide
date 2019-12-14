@@ -1,0 +1,9 @@
+{{yield (hash
+  open=this.openModal
+  register=this.registerManager
+  unregister=this.unregisterManager
+  modal=(component "basic-modal"
+    registerManager=this.registerManager
+    unregisterManager=this.unregisterManager
+  )
+)}}
