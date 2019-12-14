@@ -1,0 +1,20 @@
+{{#let
+  (array "default" "dark" "dark-grey" "solarized-dark" "standard")
+  as |themes|
+}}
+
+  <select
+    class="theme-picker form-control"
+    ...attributes
+    {{on "change" this.onChange}}
+  >
+    <optgroup label="Site Theme">
+      {{#each themes as |theme|}}
+        <option value={{theme}} selected={{eq theme @currentTheme}}>
+          {{theme}}
+        </option>
+      {{/each}}
+    </optgroup>
+  </select>
+
+{{/let}}

@@ -1,21 +1,20 @@
-<div class="hack container">
+{{set-body-class "hack" "container" this.theme}}
 
-  <nav class="main-nav">
-    <span class="main-nav__root"><LinkTo @route="index">Main</LinkTo></span>
-    <ul>
-      <li><LinkTo @route="basic-modals">Basic Modals</LinkTo></li>
-      <li>
-        <LinkTo @route="wizard-modals">Wizard Modals</LinkTo>
-        <ul>
-          <li><LinkTo @route="wizard-modals.historical">Historical</LinkTo></li>
-          <li><LinkTo @route="wizard-modals.persistent">Persistent</LinkTo></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+<nav class="main-nav">
+  <ul>
+    <li><LinkTo @route="index">Main</LinkTo></li>
+    <li><LinkTo @route="basic-modals">Basic Modals</LinkTo></li>
+    <li>
+      <LinkTo @route="wizard-modals">Wizard Modals</LinkTo>
+      <ul>
+        <li><LinkTo @route="wizard-modals.historical">Historical</LinkTo></li>
+        <li><LinkTo @route="wizard-modals.persistent">Persistent</LinkTo></li>
+      </ul>
+    </li>
+  </ul>
+  <ThemePicker @currentTheme={{this.theme}} @update={{fn (mut this.theme)}} />
+</nav>
 
-  <h1>Modal Dialogs Guide</h1>
+<h1>Modal Dialogs Guide</h1>
 
-  {{outlet}}
-
-</div>
+{{outlet}}

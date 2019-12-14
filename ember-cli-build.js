@@ -4,7 +4,17 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    'ember-prism': {
+      theme: 'twilight',
+      components: [
+        'handlebars',
+        'javascript',
+        'json',
+        'markup',
+        'markup-templating'
+      ],
+      plugins: [],
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -21,6 +31,10 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('node_modules/hack/dist/hack.css');
+  app.import('node_modules/hack/dist/dark.css');
+  app.import('node_modules/hack/dist/dark-grey.css');
+  app.import('node_modules/hack/dist/solarized-dark.css');
+  app.import('node_modules/hack/dist/standard.css');
   app.import('node_modules/animate.css/animate.css');
 
   return app.toTree();

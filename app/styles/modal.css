@@ -44,6 +44,34 @@
   text-align: right;
 }
 
+.dark .modal .modal-content,
+.dark-grey .modal .modal-content,
+.solarized-dark .modal .modal-content {
+  border-radius: .6em;
+  box-shadow: 0 0 6px 3px #ccc;
+}
+
+.dark .modal .modal-content {
+  background: black;
+  color: white;
+}
+
+.dark-grey .modal .modal-content {
+  background: #181818;
+  color: white;
+}
+
+.solarized-dark .modal .modal-content {
+  box-shadow-color: #78909c;
+  background: #073642;
+  color: #78909c;
+}
+
+.standard .modal .modal-content {
+  border-radius: 12px;
+  box-shadow: 6px 6px 6px #000;
+}
+
 @media (max-width: 767px) {
   .modal.open .modal-content,
   .modal:target .modal-content {

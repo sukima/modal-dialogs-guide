@@ -1,10 +1,7 @@
 .main-nav {
-  margin-top: 10px;
   font-size: 1.2rem;
-}
-
-.main-nav .main-nav__root::after {
-  content: ' =>';
+  display: flex;
+  align-items: top;
 }
 
 .main-nav ul {
@@ -45,14 +42,14 @@
   content: none;
 }
 
-.main-nav li > .active {
+.main-nav .active {
   font-weight: bold;
 }
 
-.main-nav li > .active::before {
+.main-nav .active::before {
   content: '[';
 }
 
-.main-nav li > .active::after {
+.main-nav .active::after {
   content: ']';
 }
