@@ -1,5 +1,5 @@
-@import 'nav.css';
 @import 'modal.css';
+@import 'hack-nav.css';
 @import 'theme-picker.css';
 
 .text-center {
@@ -9,4 +9,14 @@
 .btn-icon {
   padding: 0 6px;
   font-size: 2rem;
+}
+
+.hack .site-footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.site-footer > * {
+  margin-right: 10px;
 }

@@ -1,0 +1,59 @@
+.hack-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hack .hack-nav ul {
+  display: inline;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.hack-nav .hack-nav__menu {
+  margin-top: 10px;
+}
+
+.hack-nav ul::before {
+  content: '{';
+}
+
+.hack-nav ul::after {
+  content: '}';
+}
+
+.hack-nav ul {
+  display: inline;
+  list-style: none;
+}
+
+.hack-nav li {
+  display: inline;
+}
+
+.hack .hack-nav li {
+  padding-left: 0;
+}
+
+.hack .hack-nav ul > li::after {
+  content: none;
+}
+
+.hack .hack-nav ul > li::before {
+  content: '| ';
+}
+
+.hack .hack-nav ul > li:first-child::before {
+  content: none;
+}
+
+.hack-nav .active {
+  font-weight: bold;
+}
+
+.hack-nav .active::before {
+  content: '[';
+}
+
+.hack-nav .active::after {
+  content: ']';
+}

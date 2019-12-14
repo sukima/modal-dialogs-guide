@@ -1,20 +1,39 @@
 {{set-body-class "hack" "container" this.theme}}
 
-<nav class="main-nav">
-  <ul>
-    <li><LinkTo @route="index">Main</LinkTo></li>
-    <li><LinkTo @route="basic-modals">Basic Modals</LinkTo></li>
-    <li>
-      <LinkTo @route="wizard-modals">Wizard Modals</LinkTo>
+<header>
+  <nav class="hack-nav">
+    <div class="hack-nav__left">
+    </div>
+    <div class="hack-nav__menu">
       <ul>
-        <li><LinkTo @route="wizard-modals.historical">Historical</LinkTo></li>
-        <li><LinkTo @route="wizard-modals.persistent">Persistent</LinkTo></li>
+        <li><LinkTo @route="index">Main</LinkTo></li>
+        <li><LinkTo @route="basic-modals">Basic Modals</LinkTo></li>
+        <li>
+          <LinkTo @route="wizard-modals">Wizard Modals</LinkTo>
+          <ul>
+            <li><LinkTo @route="wizard-modals.historical">Historical</LinkTo></li>
+            <li><LinkTo @route="wizard-modals.persistent">Persistent</LinkTo></li>
+          </ul>
+        </li>
       </ul>
-    </li>
-  </ul>
-  <ThemePicker @currentTheme={{this.theme}} @update={{fn (mut this.theme)}} />
-</nav>
+    </div>
+    <div class="hack-nav__right">
+      <ThemePicker @currentTheme={{this.theme}} @update={{fn (mut this.theme)}} />
+    </div>
+  </nav>
 
-<h1>Modal Dialogs Guide</h1>
+  <h1>Modal Dialogs Guide</h1>
+</header>
 
-{{outlet}}
+<main>
+  {{outlet}}
+</main>
+
+<footer class="site-footer">
+  <span><code>{{app-version}}</code></span>
+  <span>
+    <a href="https://github.com/sukima/modal-dialogs-guide">
+      <img alt="GitHub stars" src="https://img.shields.io/github/stars/sukima/modal-dialogs-guide?logo=github&style=flat-square">
+    </a>
+  </span>
+</footer>
