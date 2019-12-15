@@ -22,6 +22,7 @@
     "animate.css": "^3.7.2",
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
+    "common-tags": "^1.8.0",
     "confirmed": "^2.3.2",
     "ember-auto-import": "^1.5.2",
     "ember-cli": "~3.14.0",
