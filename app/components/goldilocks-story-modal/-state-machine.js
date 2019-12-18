@@ -133,9 +133,6 @@ export function createGoldilocksMachine() {
         entry: 'confirm',
       },
     },
-    on: {
-      CANCEL: 'cancelled',
-    },
   },
   {
     actions: {

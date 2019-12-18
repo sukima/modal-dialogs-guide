@@ -15,6 +15,26 @@
   font-size: 2rem;
 }
 
+.btn-link {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  background-color: transparent;
+  cursor: pointer;
+  color: #ff2e88;
+  text-decoration: none;
+  border-bottom: 1px solid #ff2e88;
+  font-size: inherit;
+  font-style: inherit;
+  font-family: inherit;
+}
+
+.btn-link:hover {
+  background-color: #ff2e88;
+  color: #fff;
+}
+
 .hack .site-footer {
   display: flex;
   justify-content: space-between;

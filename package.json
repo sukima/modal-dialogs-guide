@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@ember/optional-features": "^1.0.0",
+    "@xstate/test": "^0.2.0",
     "animate.css": "^3.7.2",
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",

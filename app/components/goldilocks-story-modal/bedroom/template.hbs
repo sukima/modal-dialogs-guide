@@ -22,6 +22,7 @@
           name="bed"
           id={{id}}
           checked={{this.isBedJustRight}}
+          value={{readonly this.OPTIONS.JUST_RIGHT}}
           {{on "change" (fn @transitionTo (hash type="SLEEP" value=this.OPTIONS.JUST_RIGHT))}}
         >
         <label for={{id}}>
@@ -38,6 +39,7 @@
           name="bed"
           id={{id}}
           checked={{this.isBedTooSoft}}
+          value={{readonly this.OPTIONS.TOO_SOFT}}
           {{on "change" (fn @transitionTo (hash type="SLEEP" value=this.OPTIONS.TOO_SOFT))}}
         >
         <label for={{id}}>
@@ -53,6 +55,7 @@
           name="bed"
           id={{id}}
           checked={{this.isBedTooHard}}
+          value={{readonly this.OPTIONS.TOO_HARD}}
           {{on "change" (fn @transitionTo (hash type="SLEEP" value=this.OPTIONS.TOO_HARD))}}
         >
         <label for={{id}}>

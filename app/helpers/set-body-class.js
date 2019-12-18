@@ -1,33 +1,37 @@
 import Helper from '@ember/component/helper';
-import { isBlank } from '@ember/utils';
 
-export default class SetBodyClassHelper extends Helper {
+const classNameCounts = new Map();
 
-  currentClassNames = new Set();
-
-  compute([...bodyClasses]) {
-    this.clearCurrentClassNames();
-    this.currentClassNames = new Set(bodyClasses);
-    this.populateCurrentClassNames();
+function updateClassNameCounts(classNames = [], step = 1) {
+  for (let className of classNames) {
+    let count = classNameCounts.get(className) || 0;
+    classNameCounts.set(className, count + step);
   }
+}
+
+function syncBodyClasses() {
+  document.querySelector('body').classList.remove(...classNameCounts.keys());
+  for (let [className, count] of classNameCounts) {
+    if (count <= 0) {
+      classNameCounts.delete(className);
+    }
+  }
+  document.querySelector('body').classList.add(...classNameCounts.keys());
+}
+
+export default Helper.extend({
+
+  compute(classNames) {
+    updateClassNameCounts(this._classNames, -1);
+    this._classNames = new Set(classNames);
+    updateClassNameCounts(this._classNames, 1);
+    syncBodyClasses();
+  },
 
   willDestroy() {
-    super.willDestroy(...arguments);
-    this.clearCurrentClassNames();
-  }
+    this._super(...arguments);
+    updateClassNameCounts(this._classNames, -1);
+    syncBodyClasses();
+  },
 
-  clearCurrentClassNames() {
-    for (let className of this.currentClassNames) {
-      if (isBlank(className)) { continue; }
-      document.body.classList.remove(className);
-    }
-  }
-
-  populateCurrentClassNames() {
-    for (let className of this.currentClassNames) {
-      if (isBlank(className)) { continue; }
-      document.body.classList.add(className);
-    }
-  }
-
-}
+});

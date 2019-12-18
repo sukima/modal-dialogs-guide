@@ -5,6 +5,23 @@
   <p>
     I've developed and iterated on the management of modal dialog popups. This
     site is a showcase for those ideas.
+    <button class="btn btn-link" {{on "click" (fn workspace.open "example1")}}>
+      Try opening an example modal.
+    </button>
   </p>
+
+  <workspace.modal class="animated pulse" @name="example1" as |modal|>
+    <modal.header>
+      <h1>Example Modal</h1>
+    </modal.header>
+    <modal.body>
+      <p>This is an example modal dialog.</p>
+    </modal.body>
+    <modal.footer>
+      <button class="btn btn-primary" {{on "click" modal.cancel}}>
+        Dismiss
+      </button>
+    </modal.footer>
+  </workspace.modal>
 
 </ModalWorkspace>

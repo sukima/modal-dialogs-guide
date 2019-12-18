@@ -1045,6 +1045,19 @@
     "@webassemblyjs/wast-parser" "1.7.11"
     "@xtuc/long" "4.2.1"
 
+"@xstate/graph@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xstate/graph/-/graph-1.0.0.tgz#657168ce35001bb915d419dc2bea9cd89d17b038"
+  integrity sha512-QinBh+O7CEqqb//SSeJU++tdKex635Hzx0xCgF+yYtDs0RIx99qscRJXlIr2mjaV1g0c/j9wAgc/ZChd6mzgDA==
+
+"@xstate/test@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@xstate/test/-/test-0.2.0.tgz#67b7a75d9801681944e2055d32b202660fc64dbe"
+  integrity sha512-+3iAj81kmb0lREDSsVXxcCwwEl1uXL0/QKnQG1GQSDsMXfRDmX1VglEB0Y74GR1rtGq2mar/fmhN0/ypEdYp6A==
+  dependencies:
+    "@xstate/graph" "^1.0.0"
+    chalk "^2.4.2"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"

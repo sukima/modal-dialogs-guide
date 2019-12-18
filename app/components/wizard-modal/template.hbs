@@ -11,6 +11,7 @@
         <button
           class="btn btn-default btn-ghost btn-icon pull-right"
           aria-label="Close"
+          data-test-selector="cancel"
           {{on "click" modal.cancel}}
         >
           &times;
@@ -19,7 +20,7 @@
       </modal.header>
     {{/if}}
 
-    <modal.body>
+    <modal.body class={{this.state}}>
       {{yield (hash
         transitionTo=(fn this.transitionTo)
         registerUiViewInfo=(fn (mut (get this.uiViewInfos this.state)))
@@ -31,6 +32,7 @@
 
     <modal.footer class="grid -stretch">
       <button
+        data-test-selector="back"
         class="cell -6of12 btn btn-default btn-ghost"
         disabled={{uiViewInfo.prevDisabled}}
         {{on "click" (fn this.transitionTo "PREV")}}
@@ -38,6 +40,7 @@
         {{if uiViewInfo.prevLabel uiViewInfo.prevLabel "Back"}}
       </button>
       <button
+        data-test-selector="next"
         class="cell -6of12 btn btn-primary btn-ghost"
         disabled={{uiViewInfo.nextDisabled}}
         {{on "click" (fn this.transitionTo "NEXT")}}
