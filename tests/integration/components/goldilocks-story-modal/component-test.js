@@ -125,7 +125,7 @@ const testMachine = Machine({
         NEXT: 'living-room',
       },
       meta: {
-        description: 'Sitting in chair that is too big',
+        description: 'Sitting in chair that is too small',
         test({ assert, el }) {
           assert.ok(el.querySelector('.modal-body.chair-too-small'), 'modal-body has class chair-too-small');
         },
@@ -251,7 +251,7 @@ module('Integration | Component | Goldilocks Story Modal', function(hooks) {
     }
   });
 
-  goldilocksModel.getShortestPathPlans().forEach(function (plan) {
+  goldilocksModel.getSimplePathPlans().forEach(function (plan) {
     module(plan.description, function() {
       plan.paths.forEach(function (path) {
         test(path.description, async function(assert) {
