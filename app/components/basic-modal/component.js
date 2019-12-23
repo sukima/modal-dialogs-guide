@@ -9,6 +9,10 @@ export default class BasicModalComponent extends Component {
 
   guid = guidFor(this);
 
+  @tracked animationEnd = () => {};
+
+  @tracked isClosing = false;
+
   @tracked resolver;
 
   get showModal() {
@@ -16,9 +20,17 @@ export default class BasicModalComponent extends Component {
   }
 
   openModal() {
+    this.isClosing = false;
     return new Confirmer(resolver => {
       this.resolver = resolver;
-      resolver.dispose(() => this.resolver = null);
+    }).onDone(async () => {
+      if (this.closingClass) {
+        await new Promise(resolve => {
+          this.animationEnd = resolve;
+          this.isClosing = true;
+        });
+      }
+      this.resolver = null;
     });
   }
 

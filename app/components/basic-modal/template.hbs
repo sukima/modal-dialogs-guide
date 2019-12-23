@@ -8,7 +8,13 @@
     aria-labeledby={{ids.labeledby}}
     aria-describedby={{ids.describedby}}
   >
-    <div class="modal-content" aria-model="true" ...attributes>
+    <div
+      class="modal-content {{if this.isClosing @closingClass}}"
+      ...attributes
+      role="dialog"
+      aria-model="true"
+      {{on "animationend" this.animationEnd}}
+    >
       {{#if this.showModal}}
         {{yield (hash
           header=(component "basic-modal/section" sectionClass="modal-header" sectionId=ids.labeledby)
