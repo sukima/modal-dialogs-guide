@@ -10,8 +10,8 @@
 {{/if}}
 
 <GoldilocksStoryModal
-  class="animated flipInY"
   @currentState={{this.currentState}}
   @onTransition={{fn (mut this.currentState)}}
   @registerManager={{fn (mut this.modalManager)}}
+  {{animated "flipInY" close="flipOutY"}}
 />

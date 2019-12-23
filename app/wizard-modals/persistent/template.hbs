@@ -22,9 +22,9 @@
 <CodeBlock @language="json" @code={{json this.state indent=2}} />
 
 <GoldilocksStoryModal
-  class="animated flipInY"
   @subtitle="Persistent"
   @currentState={{this.state}}
   @onTransition={{fn (mut this.state)}}
   @registerManager={{fn (mut this.modalManager)}}
+  {{animated "flipInY" close="flipOutY"}}
 />

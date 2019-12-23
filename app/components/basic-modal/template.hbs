@@ -3,17 +3,16 @@
   describedby=(concat this.guid "-caption")
 ) as |ids|}}
   <div
-    role="dialog"
     class="modal {{if this.showModal "open"}}"
     aria-labeledby={{ids.labeledby}}
     aria-describedby={{ids.describedby}}
   >
     <div
-      class="modal-content {{if this.isClosing @closingClass}}"
+      class="modal-content"
       ...attributes
       role="dialog"
       aria-model="true"
-      {{on "animationend" this.animationEnd}}
+      {{ref this "modalElement"}}
     >
       {{#if this.showModal}}
         {{yield (hash

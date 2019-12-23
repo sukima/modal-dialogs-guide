@@ -9,26 +9,18 @@ export default class BasicModalComponent extends Component {
 
   guid = guidFor(this);
 
-  @tracked animationEnd = () => {};
-
-  @tracked isClosing = false;
-
   @tracked resolver;
 
   get showModal() {
     return !!this.resolver;
   }
 
-  openModal() {
-    this.isClosing = false;
+  async openModal() {
     return new Confirmer(resolver => {
       this.resolver = resolver;
     }).onDone(async () => {
-      if (this.closingClass) {
-        await new Promise(resolve => {
-          this.animationEnd = resolve;
-          this.isClosing = true;
-        });
+      if (this.modalElement.animations) {
+        await this.modalElement.animations.run('close');
       }
       this.resolver = null;
     });

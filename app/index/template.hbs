@@ -10,7 +10,11 @@
     </button>
   </p>
 
-  <workspace.modal class="animated rotateIn" @closingClass="rotateOut" @name="example1" as |modal|>
+  <workspace.modal
+    @name="example1"
+    {{animated "rotateIn" close="rotateOut"}}
+    as |modal|
+  >
     <modal.header>
       <h1>Example Modal</h1>
     </modal.header>
