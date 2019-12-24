@@ -6,7 +6,12 @@ export default class WizardModalComponent extends Component {
   uiViewInfos = {};
 
   get state() {
-    return this.args.currentState && this.args.currentState.value;
+    let {
+      done,
+      value: currentValue,
+      history: { value: previousValue } = {}
+    } = this.args.currentState || {};
+    return done ? previousValue : currentValue;
   }
 
   @action setup() {

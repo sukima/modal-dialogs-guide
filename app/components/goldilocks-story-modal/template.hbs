@@ -8,17 +8,15 @@
   as |wizard|
 >
 
-  {{#unless wizard.currentState.done}}
-    {{#let
-      (component (concat "goldilocks-story-modal/" wizard.state))
-      as |WizardView|
-    }}
-      <WizardView
-        @currentState={{wizard.currentState}}
-        @transitionTo={{wizard.transitionTo}}
-        @registerUiViewInfo={{wizard.registerUiViewInfo}}
-      />
-    {{/let}}
-  {{/unless}}
+  {{#let
+    (component (concat "goldilocks-story-modal/" wizard.state))
+    as |WizardView|
+  }}
+    <WizardView
+      @currentState={{wizard.currentState}}
+      @transitionTo={{wizard.transitionTo}}
+      @registerUiViewInfo={{wizard.registerUiViewInfo}}
+    />
+  {{/let}}
 
 </WizardModal>
