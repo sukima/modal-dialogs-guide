@@ -1,28 +1,22 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
 
 export default class WizardModalComponent extends Component {
 
-  tagName = '';
-
   uiViewInfos = {};
 
-  @tracked currentState;
-
   get state() {
-    return this.currentState && this.currentState.value;
+    return this.args.currentState && this.args.currentState.value;
   }
 
-  didInsertElement() {
-    super.didInsertElement(...arguments);
-    this.currentMachine = this.machine.withConfig({
+  @action setup() {
+    this.currentMachine = this.args.machine.withConfig({
       actions: {
         confirm: () => this.confirmModal(),
         cancel: () => this.rejectModal(),
       },
     });
-    this.registerManager({
+    this.args.registerManager({
       open: (currentState) => this.openModal(currentState),
       confirm: () => this.confirmModal(),
       cancel: () => this.cancelModal(),
@@ -32,7 +26,7 @@ export default class WizardModalComponent extends Component {
 
   openModal(initialState = this.currentMachine.initialState) {
     let currentState = this.currentMachine.resolveState(initialState);
-    this.onTransition(currentState);
+    this.args.onTransition(currentState);
     return this.modalManager.open();
   }
 
@@ -49,11 +43,11 @@ export default class WizardModalComponent extends Component {
   }
 
   @action transitionTo(event) {
-    let currentState = this.currentMachine.resolveState(this.currentState);
+    let currentState = this.currentMachine.resolveState(this.args.currentState);
     let newState = this.currentMachine.transition(currentState, event);
     const { actions } = newState;
     actions.forEach(action => action.exec && action.exec());
-    this.onTransition(newState);
+    this.args.onTransition(newState);
   }
 
 }

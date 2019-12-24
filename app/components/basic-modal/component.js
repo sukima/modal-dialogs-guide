@@ -1,11 +1,10 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import Confirmer from 'confirmed';
 import { guidFor } from '@ember/object/internals';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class BasicModalComponent extends Component {
-
-  tagName = '';
 
   guid = guidFor(this);
 
@@ -26,24 +25,22 @@ export default class BasicModalComponent extends Component {
     });
   }
 
-  didInsertElement() {
-    super.didInsertElement(...arguments);
-    this.registerManager({
+  @action registerManager() {
+    this.args.registerManager({
       open: () => this.openModal(),
       confirm: (value) => this.resolver.confirm(value),
       reject: (value) => this.resolver.reject(value),
       cancel: (value) => this.resolver.cancel(value),
       error: (error) => this.resolver.error(error),
-    }, this.name);
+    }, this.args.name);
   }
 
-  willDestroyElement() {
-    super.willDestroyElement(...arguments);
+  @action teardown() {
     if (this.resolver) {
       this.resolver.cancel();
     }
-    if (this.unregisterManager) {
-      this.unregisterManager(this.name);
+    if (this.args.unregisterManager) {
+      this.args.unregisterManager(this.name);
     }
   }
 

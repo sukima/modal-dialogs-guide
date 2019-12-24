@@ -3,6 +3,7 @@
   <BasicModal
     ...attributes
     @registerManager={{fn (mut this.modalManager)}}
+    {{did-insert this.setup}}
     as |modal|
   >
 
