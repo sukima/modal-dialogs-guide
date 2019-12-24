@@ -35,7 +35,10 @@ module.exports = function(defaults) {
   app.import('node_modules/hack/dist/dark-grey.css');
   app.import('node_modules/hack/dist/solarized-dark.css');
   app.import('node_modules/hack/dist/standard.css');
-  app.import('node_modules/animate.css/animate.css');
+
+  if (app.env !== 'test') {
+    app.import('node_modules/animate.css/animate.css');
+  }
 
   return app.toTree();
 };
