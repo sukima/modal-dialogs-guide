@@ -7,16 +7,17 @@
     as |modal|
   >
 
+    <button
+      class="btn btn-default btn-ghost btn-icon pull-right"
+      aria-label="Close"
+      data-test-selector="cancel"
+      {{on "click" modal.cancel}}
+    >
+      &times;
+    </button>
+
     {{#if @title}}
       <modal.header>
-        <button
-          class="btn btn-default btn-ghost btn-icon pull-right"
-          aria-label="Close"
-          data-test-selector="cancel"
-          {{on "click" modal.cancel}}
-        >
-          &times;
-        </button>
         <h1>{{@title}}</h1>
       </modal.header>
     {{/if}}
