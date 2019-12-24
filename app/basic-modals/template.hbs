@@ -9,7 +9,7 @@
     Open Modal
   </button>
 
-    <workspace.modal @name="example" {{animated "pulse"}} as |modal|>
+  <workspace.modal @name="example" {{animated "pulse"}} as |modal|>
 
     <modal.header>
       <h1>Test Modal</h1>
@@ -24,10 +24,7 @@
     </modal.body>
 
     <modal.footer>
-      <button
-        class="btn btn-primary"
-        {{on "click" modal.confirm}}
-      >
+      <button class="btn btn-primary" {{on "click" modal.confirm}}>
         Close
       </button>
     </modal.footer>

@@ -2,16 +2,14 @@
   labeledby=(concat this.guid "-header")
   describedby=(concat this.guid "-caption")
 ) as |ids|}}
-  <div
-    class="modal {{if this.showModal "open"}}"
-    aria-labeledby={{ids.labeledby}}
-    aria-describedby={{ids.describedby}}
-  >
+  <div class="modal {{if this.showModal "open"}}">
     <div
       class="modal-content"
       ...attributes
       role="dialog"
       aria-model="true"
+      aria-labeledby={{ids.labeledby}}
+      aria-describedby={{ids.describedby}}
       {{ref this "modalElement"}}
     >
       {{#if this.showModal}}
