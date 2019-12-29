@@ -11,4 +11,8 @@ export default class ModalResultTrackerComponent extends Component {
     this.result = await this.modalManager.open();
   }
 
+  @action register(modalManager) {
+    this.modalManager = modalManager;
+  }
+
 }

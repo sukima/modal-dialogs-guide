@@ -8,12 +8,13 @@ export default class ModalWorkspaceComponent extends Component {
 
   modalManagers = new Map();
 
-  @action registerManager(manager, name) {
-    assert('workspace.modal must have a @name property', name);
+  @action registerManager(manager) {
+    let { name } = manager;
+    assert('modal must have a @name property', name);
     this.modalManagers.set(name, manager);
   }
 
-  @action unregisterManager(name) {
+  @action unregisterManager({ name }) {
     this.modalManagers.delete(name);
   }
 

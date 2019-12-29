@@ -1,15 +1,17 @@
 <h2>Historical Wizard Modals</h2>
 
-<ModalResultTracker as |modalTracker|>
+<ModalWorkspace as |workspace|>
 
   <StateMachineHistory as |history|>
 
-    <button
-      class="btn btn-primary"
-      {{on "click" (fn this.chainActions (array history.reset modalTracker.openModal))}}
-    >
-      Read &rdquo;Goldilocks and the Three Bears&ldquo;
-    </button>
+    {{#let (fn workspace.open "goldilocks") as |openGoldilocksModal|}}
+      <button
+        class="btn btn-primary"
+        {{on "click" (fn this.trackModalResult history.reset openGoldilocksModal)}}
+      >
+        Read &rdquo;Goldilocks and the Three Bears&ldquo;
+      </button>
+    {{/let}}
 
     <table>
       <thead>
@@ -40,13 +42,13 @@
             </td>
           </tr>
         {{/each}}
-        {{#if modalTracker.result}}
+        {{#if this.modalResult}}
           <tr>
             <td>
               <em>Closed</em>
             </td>
             <td>
-              {{modalTracker.result.reason}}
+              {{this.modalResult.reason}}
             </td>
             <td>
               This is the result of the Confirmer.
@@ -57,13 +59,15 @@
     </table>
 
     <GoldilocksStoryModal
+      @name="goldilocks"
       @subtitle="Historical"
       @currentState={{history.lastState}}
-      @onTransition={{fn history.pushState}}
-      @registerManager={{modalTracker.registerManager}}
+      @onTransition={{history.pushState}}
+      @registerManager={{workspace.register}}
+      @unregisterManager={{workspace.unregister}}
       {{animated "fadeInDown" close="fadeOutDown"}}
     />
 
   </StateMachineHistory>
 
-</ModalResultTracker>
+</ModalWorkspace>

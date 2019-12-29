@@ -2,8 +2,9 @@
 
   <BasicModal
     ...attributes
-    @registerManager={{fn (mut this.modalManager)}}
-    {{did-insert this.setup}}
+    @name={{@name}}
+    @registerManager={{this.setup}}
+    @unregisterManager={{@unregisterManager}}
     as |modal|
   >
 

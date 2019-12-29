@@ -14,7 +14,8 @@ export default class WizardModalComponent extends Component {
     return done ? previousValue : currentValue;
   }
 
-  @action setup() {
+  @action setup(modalManager) {
+    this.modalManager = modalManager;
     this.currentMachine = this.args.machine.withConfig({
       actions: {
         confirm: () => this.confirmModal(),
@@ -22,6 +23,7 @@ export default class WizardModalComponent extends Component {
       },
     });
     this.args.registerManager({
+      name: this.modalManager.name,
       open: (currentState) => this.openModal(currentState),
       confirm: () => this.confirmModal(),
       cancel: () => this.cancelModal(),

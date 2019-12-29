@@ -2,11 +2,7 @@
   labeledby=(concat this.guid "-header")
   describedby=(concat this.guid "-caption")
 ) as |ids|}}
-  <div
-    class="modal {{if this.showModal "open"}}"
-    {{did-insert this.registerManager}}
-    {{will-destroy this.teardown}}
-  >
+  <div class="modal {{if this.showModal "open"}}">
     <div
       class="modal-content"
       ...attributes

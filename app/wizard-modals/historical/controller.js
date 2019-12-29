@@ -6,10 +6,9 @@ export default class WizardModalsHistoricalController extends Controller {
 
   @tracked modalResult = null;
 
-  @action async chainActions(actionFuncs) {
-    for (let func of actionFuncs) {
-      await func();
-    }
+  @action async trackModalResult(resetHistory, openModal) {
+    resetHistory();
+    this.modalResult = await openModal();
   }
 
 }

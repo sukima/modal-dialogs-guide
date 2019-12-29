@@ -1,17 +1,20 @@
 <h2>Wizard Modals</h2>
 
-{{#if this.modalManager}}
+<ModalWorkspace as |workspace|>
   <button
     class="btn btn-primary"
-    {{on "click" (fn this.modalManager.open undefined)}}
+    {{on "click" (fn workspace.open "goldilocks" this.currentState)}}
   >
     Read &rdquo;Goldilocks and the Three Bears&ldquo;
   </button>
-{{/if}}
 
-<GoldilocksStoryModal
-  @currentState={{this.currentState}}
-  @onTransition={{fn (mut this.currentState)}}
-  @registerManager={{fn (mut this.modalManager)}}
-  {{animated "flipInY" close="flipOutY"}}
-/>
+  <GoldilocksStoryModal
+    @name="goldilocks"
+    @currentState={{this.currentState}}
+    @onTransition={{fn (mut this.currentState)}}
+    @registerManager={{workspace.register}}
+    @unregisterManager={{workspace.unregister}}
+    {{animated "flipInY" close="flipOutY"}}
+  />
+
+</ModalWorkspace>

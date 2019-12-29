@@ -1,30 +1,36 @@
 <h2>Persistent Wizard Modals</h2>
 
-{{#if this.modalManager}}
-  <button
-    class="btn {{if this.state "btn-success" "btn-primary"}}"
-    {{on "click" this.openModal}}
-  >
-    {{if this.state "Resume reading" "Read"}}
-    &rdquo;Goldilocks and the Three Bears&ldquo;
-  </button>
-{{/if}}
+<ModalWorkspace as |workspace|>
 
-{{#if this.state}}
-  <button
-    class="btn btn-error"
-    {{on "click" (fn (mut this.state) undefined)}}
-  >
-    Reset progress
-  </button>
-{{/if}}
+  {{#let (fn workspace.open "goldilocks") as |openGoldilocksModal|}}
+    <button
+      class="btn {{if this.state "btn-success" "btn-primary"}}"
+      {{on "click" (fn this.openModal openGoldilocksModal)}}
+    >
+      {{if this.state "Resume reading" "Read"}}
+      &rdquo;Goldilocks and the Three Bears&ldquo;
+    </button>
+  {{/let}}
 
-<CodeBlock @language="json" @code={{json this.state indent=2}} />
+  {{#if this.state}}
+    <button
+      class="btn btn-error"
+      {{on "click" (fn (mut this.state) undefined)}}
+    >
+      Reset progress
+    </button>
+  {{/if}}
 
-<GoldilocksStoryModal
-  @subtitle="Persistent"
-  @currentState={{this.state}}
-  @onTransition={{fn (mut this.state)}}
-  @registerManager={{fn (mut this.modalManager)}}
-  {{animated "flipInY" close="flipOutY"}}
-/>
+  <CodeBlock @language="json" @code={{json this.state indent=2}} />
+
+  <GoldilocksStoryModal
+    @name="goldilocks"
+    @subtitle="Persistent"
+    @currentState={{this.state}}
+    @onTransition={{fn (mut this.state)}}
+    @registerManager={{workspace.register}}
+    @unregisterManager={{workspace.unregister}}
+    {{animated "flipInY" close="flipOutY"}}
+  />
+
+</ModalWorkspace>
