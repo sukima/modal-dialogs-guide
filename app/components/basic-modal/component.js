@@ -36,6 +36,7 @@ export default class BasicModalComponent extends Component {
   async openModal() {
     return new Confirmer(resolver => {
       this.resolver = resolver;
+      this.modalElement.focus();
     }).onDone(async () => {
       if (this.modalElement.animations) {
         await this.modalElement.animations.run('close');
