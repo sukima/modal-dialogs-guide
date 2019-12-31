@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { click, render } from '@ember/test-helpers';
+import { click, render, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { Machine } from 'xstate';
 import { createModel } from '@xstate/test';
@@ -255,13 +255,15 @@ module('Integration | Component | Goldilocks Story Modal', function(hooks) {
     module(plan.description, function() {
       plan.paths.forEach(function (path) {
         test(path.description, async function(assert) {
-          this.set('registerSpy', manager => manager.open());
+          this.registerSpy = manager => this.modalManager = manager;
           await render(hbs`
             <GoldilocksStoryModal
               @currentState={{this.currentState}}
               @onTransition={{fn (mut this.currentState)}}
               @registerManager={{this.registerSpy}}
             />`);
+          this.modalManager.open();
+          await settled();
           await path.test({ assert, el: this.element });
         });
       });
