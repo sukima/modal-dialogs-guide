@@ -49,7 +49,7 @@ export default class WizardModalComponent extends Component {
     this.modalManager.reject();
   }
 
-  @action transitionTo(event) {
+  @action transition(event) {
     let currentState = this.currentMachine.resolveState(this.args.currentState);
     let newState = this.currentMachine.transition(currentState, event);
     const { actions } = newState;

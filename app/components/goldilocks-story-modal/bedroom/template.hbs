@@ -23,7 +23,7 @@
           id={{id}}
           checked={{this.isBedJustRight}}
           value={{readonly this.OPTIONS.JUST_RIGHT}}
-          {{on "change" (fn @transitionTo (hash type="SLEEP" value=this.OPTIONS.JUST_RIGHT))}}
+          {{on "change" (fn @transition (hash type="SLEEP" value=this.OPTIONS.JUST_RIGHT))}}
         >
         <label for={{id}}>
           The queen sized bed with a black and white checker pattern on the
@@ -40,7 +40,7 @@
           id={{id}}
           checked={{this.isBedTooSoft}}
           value={{readonly this.OPTIONS.TOO_SOFT}}
-          {{on "change" (fn @transitionTo (hash type="SLEEP" value=this.OPTIONS.TOO_SOFT))}}
+          {{on "change" (fn @transition (hash type="SLEEP" value=this.OPTIONS.TOO_SOFT))}}
         >
         <label for={{id}}>
           The twin sized bed with a green afghan folded at the foot
@@ -56,7 +56,7 @@
           id={{id}}
           checked={{this.isBedTooHard}}
           value={{readonly this.OPTIONS.TOO_HARD}}
-          {{on "change" (fn @transitionTo (hash type="SLEEP" value=this.OPTIONS.TOO_HARD))}}
+          {{on "change" (fn @transition (hash type="SLEEP" value=this.OPTIONS.TOO_HARD))}}
         >
         <label for={{id}}>
           The king sized bed with a fluffy teddy bear on it

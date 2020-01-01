@@ -19,7 +19,7 @@
           id={{id}}
           checked={{this.isPorridgeTooHot}}
           value={{readonly this.OPTIONS.TOO_HOT}}
-          {{on "change" (fn @transitionTo (hash type="EAT" value=this.OPTIONS.TOO_HOT))}}
+          {{on "change" (fn @transition (hash type="EAT" value=this.OPTIONS.TOO_HOT))}}
         >
         <label for={{id}}>
           The red bowl with steam rising from it
@@ -35,7 +35,7 @@
           id={{id}}
           checked={{this.isPorridgeJustRight}}
           value={{readonly this.OPTIONS.JUST_RIGHT}}
-          {{on "change" (fn @transitionTo (hash type="EAT" value=this.OPTIONS.JUST_RIGHT))}}
+          {{on "change" (fn @transition (hash type="EAT" value=this.OPTIONS.JUST_RIGHT))}}
         >
         <label for={{id}}>
           The yellow bowl with a spoon left in it
@@ -51,7 +51,7 @@
           id={{id}}
           checked={{this.isPorridgeTooCold}}
           value={{readonly this.OPTIONS.TOO_COLD}}
-          {{on "change" (fn @transitionTo (hash type="EAT" value=this.OPTIONS.TOO_COLD))}}
+          {{on "change" (fn @transition (hash type="EAT" value=this.OPTIONS.TOO_COLD))}}
         >
         <label for={{id}}>
           The green bowl with crackers in the porridge

@@ -8,24 +8,22 @@
     as |modal|
   >
 
-    <button
-      class="btn btn-default btn-ghost btn-icon pull-right"
-      aria-label="Close"
-      data-test-selector="cancel"
-      {{on "click" modal.cancel}}
-    >
-      &times;
-    </button>
+    <modal.header>
+      <button
+        class="btn btn-default btn-ghost btn-icon pull-right"
+        aria-label="Close"
+        data-test-selector="cancel"
+        {{on "click" modal.cancel}}
+      >
+        &times;
+      </button>
 
-    {{#if @title}}
-      <modal.header>
-        <h1>{{@title}}</h1>
-      </modal.header>
-    {{/if}}
+      <h1>{{@title}}</h1>
+    </modal.header>
 
     <modal.body class={{this.state}}>
       {{yield (hash
-        transitionTo=(fn this.transitionTo)
+        transition=this.transition
         registerUiViewInfo=(fn (mut (get this.uiViewInfos this.state)))
         modal=modal
         state=this.state
@@ -38,7 +36,7 @@
         data-test-selector="back"
         class="cell -6of12 btn btn-default btn-ghost"
         disabled={{uiViewInfo.prevDisabled}}
-        {{on "click" (fn this.transitionTo "PREV")}}
+        {{on "click" (fn this.transition "PREV")}}
       >
         {{if uiViewInfo.prevLabel uiViewInfo.prevLabel "Back"}}
       </button>
@@ -46,7 +44,7 @@
         data-test-selector="next"
         class="cell -6of12 btn btn-primary btn-ghost"
         disabled={{uiViewInfo.nextDisabled}}
-        {{on "click" (fn this.transitionTo "NEXT")}}
+        {{on "click" (fn this.transition "NEXT")}}
       >
         {{if uiViewInfo.nextLabel uiViewInfo.nextLabel "Next"}}
       </button>

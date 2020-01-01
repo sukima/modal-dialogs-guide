@@ -23,7 +23,7 @@
           id={{id}}
           checked={{this.isChairTooBig}}
           value={{readonly this.OPTIONS.TOO_BIG}}
-          {{on "change" (fn @transitionTo (hash type="SIT" value=this.OPTIONS.TOO_BIG))}}
+          {{on "change" (fn @transition (hash type="SIT" value=this.OPTIONS.TOO_BIG))}}
         >
         <label for={{id}}>
           The black recliner with leather and a great deal of padding
@@ -39,7 +39,7 @@
           id={{id}}
           checked={{this.isChairTooSmall}}
           value={{readonly this.OPTIONS.TOO_SMALL}}
-          {{on "change" (fn @transitionTo (hash type="SIT" value=this.OPTIONS.TOO_SMALL))}}
+          {{on "change" (fn @transition (hash type="SIT" value=this.OPTIONS.TOO_SMALL))}}
         >
         <label for={{id}}>
           The wooden rocking chair with a floral upholstered seat cover
@@ -55,7 +55,7 @@
           id={{id}}
           checked={{this.isChairJustRight}}
           value={{readonly this.OPTIONS.JUST_RIGHT}}
-          {{on "change" (fn @transitionTo (hash type="SIT" value=this.OPTIONS.JUST_RIGHT))}}
+          {{on "change" (fn @transition (hash type="SIT" value=this.OPTIONS.JUST_RIGHT))}}
         >
         <label for={{id}}>
           The ergonomic desk chair with adjustable arms and back support
