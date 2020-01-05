@@ -18,7 +18,7 @@
         &times;
       </button>
 
-      <h1>{{@title}}</h1>
+        <h1>{{@title}} <small>({{this.currentState.value}})</small></h1>
     </modal.header>
 
     <modal.body class={{this.state}}>
@@ -27,7 +27,7 @@
         registerUiViewInfo=(fn (mut (get this.uiViewInfos this.state)))
         modal=modal
         state=this.state
-        currentState=@currentState
+        currentState=this.currentState
       )}}
     </modal.body>
 
